@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["selectRelationCount"]
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  email     String    @unique
+  firstName String
+  lastName  String
+  password  String
+  confirmed Boolean   @default(false)
+  avatar    String    @default("https://res.cloudinary.com/elayade/image/upload/c_scale,w_264/v1616324216/instagram/iu_murtgl.png")
+  role      Role      @default(USER)
+  listings  Listing[]
+  messages  Message[]
+
+
+  @@unique([firstName, lastName])
+  @@map("users")
+}
+
+model Listing {
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  imageUrl    String
+  name        String
+  price       Float
+  description String
+  city        String
+  user        User       @relation(fields: [userId], references: [id])
+  userId      Int
+  category    Categories
+  messages    Message[]
+
+  @@map("listings")
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  listing   Listing  @relation(fields: [listingId], references: [id])
+  listingId Int
+  text      String
+
+  @@map("messages")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Categories {
+  Clothes
+  Accessories
+  Furniture
+  Electronics
+  Books
+  Other
+}

@@ -1,0 +1,3 @@
+mutation CreateMessage($text: String!, $listingId: Int!) {
+  createMessage(text: $text, listingId: $listingId)
+}

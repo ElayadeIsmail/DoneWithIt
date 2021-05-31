@@ -1,0 +1,5 @@
+query UserListings($userId: Int!) {
+  userListings(userId: $userId) {
+    ...RegularListing
+  }
+}

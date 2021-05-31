@@ -1,0 +1,5 @@
+mutation UpdateListing($inputs: ListingInput!, $listingId: Int!) {
+  updateListing(inputs: $inputs, listingId: $listingId) {
+    ...RegularListing
+  }
+}

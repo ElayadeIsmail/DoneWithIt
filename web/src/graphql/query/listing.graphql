@@ -1,0 +1,18 @@
+query Listing($listingId: Int!) {
+  listing(listingId: $listingId) {
+    currentUserListing
+    listing {
+      id
+      city
+      category
+      price
+      description
+      name
+      createdAt
+      imageUrl
+      user {
+        ...regularUser
+      }
+    }
+  }
+}

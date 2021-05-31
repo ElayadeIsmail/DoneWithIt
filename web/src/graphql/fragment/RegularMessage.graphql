@@ -1,0 +1,10 @@
+fragment RegularMessage on Message {
+  id
+  listingId
+  text
+  user {
+    id
+    name
+    avatar
+  }
+}

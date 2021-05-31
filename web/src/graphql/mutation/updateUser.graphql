@@ -1,0 +1,5 @@
+mutation UpdateUser($avatar: String!) {
+  updateUser(avatar: $avatar) {
+    ...regularUser
+  }
+}

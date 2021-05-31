@@ -1,0 +1,20 @@
+query Listings(
+  $limit: Int!
+  $cursor: Int
+  $category: String
+  $city: String
+  $name: String
+) {
+  listings(
+    limit: $limit
+    cursor: $cursor
+    category: $category
+    city: $city
+    name: $name
+  ) {
+    hasMore
+    listings {
+      ...RegularListing
+    }
+  }
+}

@@ -1,0 +1,9 @@
+fragment userResponse on UserResponse {
+  user {
+    ...regularUser
+  }
+  errors {
+    field
+    message
+  }
+}

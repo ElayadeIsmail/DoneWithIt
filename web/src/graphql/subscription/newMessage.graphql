@@ -1,0 +1,5 @@
+subscription NewMessage($listingId: Int!) {
+  newMessage(listingId: $listingId) {
+    ...RegularMessage
+  }
+}

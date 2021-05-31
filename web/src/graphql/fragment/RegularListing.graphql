@@ -1,0 +1,10 @@
+fragment RegularListing on Listing {
+  id
+  createdAt
+  name
+  price
+  userId
+  imageUrl
+  category
+  city
+}
